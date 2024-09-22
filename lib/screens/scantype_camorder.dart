@@ -337,6 +337,7 @@ class _ScanCamTypeHcOrderState extends State<ScanCamTypeHcOrder> {
                       if (date != null && date != _selectedDate) {
                         setState(() {
                           _selectedDate = date;
+                           mydate= date;
                         });
                       }
                     });

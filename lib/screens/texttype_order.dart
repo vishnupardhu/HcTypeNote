@@ -333,6 +333,7 @@ class _TextTypeHcOrderState extends State<TextTypeHcOrder> {
                       if (date != null && date != _selectedDate) {
                         setState(() {
                           _selectedDate = date;
+                          mydate= date;
                         });
                       }
                     });
@@ -393,7 +394,7 @@ class _TextTypeHcOrderState extends State<TextTypeHcOrder> {
                       ),
                     ),
                     const Spacer(),
-                    Expanded(
+                    Expanded(,
                       child: TextFormField(
                         controller: _cmShortkeyController,
                         decoration:
