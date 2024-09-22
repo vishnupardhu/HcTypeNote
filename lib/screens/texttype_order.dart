@@ -84,9 +84,13 @@ class _TextTypeHcOrderState extends State<TextTypeHcOrder> {
       _saveOrder(_orderController.text);
       var mydate;
       if (_dateController.text.isEmpty) {
-        mydate = _selectedDate;
+        setState(() {
+          mydate = _selectedDate;
+        });
       } else {
-        mydate = _dateController.text;
+        setState(() {
+          mydate = _dateController.text;
+        });
       }
       final pdf = pw.Document();
 
@@ -333,7 +337,6 @@ class _TextTypeHcOrderState extends State<TextTypeHcOrder> {
                       if (date != null && date != _selectedDate) {
                         setState(() {
                           _selectedDate = date;
-                          mydate= date;
                         });
                       }
                     });
@@ -394,7 +397,7 @@ class _TextTypeHcOrderState extends State<TextTypeHcOrder> {
                       ),
                     ),
                     const Spacer(),
-                    Expanded(,
+                    Expanded(
                       child: TextFormField(
                         controller: _cmShortkeyController,
                         decoration:
