@@ -317,7 +317,14 @@ class _ScanCamTypeHcOrderState extends State<ScanCamTypeHcOrder> {
                     ),
                   ],
                 ),
-
+                TextFormField(
+                  controller: _judgeTypeController,
+                  decoration:
+                      const InputDecoration(labelText: 'Header shortkey'),
+                  validator: (value) =>
+                      value!.isEmpty ? 'Header shortkey' : null,
+                ),
+                const SizedBox(height: 20),
                 // ],
                 InkWell(
                   onTap: () {
@@ -337,38 +344,7 @@ class _ScanCamTypeHcOrderState extends State<ScanCamTypeHcOrder> {
                   child: const Text('PRESS TO CAHNGE Date (DD-MM-YYYY)'),
                 ),
                 const SizedBox(height: 20),
-                TextFormField(
-                  controller: _judgeTypeController,
-                  decoration:
-                      const InputDecoration(labelText: 'Header shortkey'),
-                  validator: (value) =>
-                      value!.isEmpty ? 'Header shortkey' : null,
-                ),
-                const SizedBox(height: 20),
-                Row(
-                  children: [
-                    Expanded(
-                      child: TextFormField(
-                        controller: _signTypeController,
-                        decoration:
-                            const InputDecoration(labelText: 'Sign Type'),
-                        validator: (value) =>
-                            value!.isEmpty ? 'sign type' : null,
-                      ),
-                    ),
-                    const Spacer(),
-                    Expanded(
-                      child: TextFormField(
-                        controller: _cmShortkeyController,
-                        decoration:
-                            const InputDecoration(labelText: 'CM Shortkey'),
-                        validator: (value) =>
-                            value!.isEmpty ? 'CM shortkey' : null,
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 20),
+
                 FieldSuggestion<String>.network(
                   future: (input) => future.call(input),
                   boxController: boxControllerOrder,
@@ -409,7 +385,30 @@ class _ScanCamTypeHcOrderState extends State<ScanCamTypeHcOrder> {
                   },
                 ),
                 const SizedBox(height: 60),
-
+                Row(
+                  children: [
+                    Expanded(
+                      child: TextFormField(
+                        controller: _signTypeController,
+                        decoration:
+                            const InputDecoration(labelText: 'Sign Type'),
+                        validator: (value) =>
+                            value!.isEmpty ? 'sign type' : null,
+                      ),
+                    ),
+                    const Spacer(),
+                    Expanded(
+                      child: TextFormField(
+                        controller: _cmShortkeyController,
+                        decoration:
+                            const InputDecoration(labelText: 'CM Shortkey'),
+                        validator: (value) =>
+                            value!.isEmpty ? 'CM shortkey' : null,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 20),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
