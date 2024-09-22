@@ -313,47 +313,6 @@ class _TextTypeHcOrderState extends State<TextTypeHcOrder> {
                 ),
 
                 // ],
-
-                FieldSuggestion<String>.network(
-                  future: (input) => future.call(input),
-                  boxController: boxControllerOrder,
-                  textController: _orderController,
-                  maxLines: 6,
-                  inputDecoration: const InputDecoration(
-                    hintText: 'Type order', // optional
-                  ),
-                  builder: (context, snapshot) {
-                    if (snapshot.connectionState != ConnectionState.done) {
-                      return const Center(child: CircularProgressIndicator());
-                    }
-
-                    final result = snapshot.data ?? [];
-                    return ListView.builder(
-                      itemCount: result.length,
-                      itemBuilder: (context, index) {
-                        return GestureDetector(
-                          onTap: () {
-                            setState(
-                              () => _orderController.text = result[index],
-                            );
-
-                            _orderController.selection =
-                                TextSelection.fromPosition(
-                              TextPosition(
-                                  offset: _orderController.text.length),
-                            );
-
-                            boxControllerOrder.close?.call();
-                          },
-                          child: Card(
-                            child: ListTile(title: Text(result[index])),
-                          ),
-                        );
-                      },
-                    );
-                  },
-                ),
-                const SizedBox(height: 50),
                 InkWell(
                   onTap: () {
                     showDatePicker(
@@ -404,6 +363,47 @@ class _TextTypeHcOrderState extends State<TextTypeHcOrder> {
                   ],
                 ),
                 const SizedBox(height: 20),
+                FieldSuggestion<String>.network(
+                  future: (input) => future.call(input),
+                  boxController: boxControllerOrder,
+                  textController: _orderController,
+                  maxLines: 6,
+                  inputDecoration: const InputDecoration(
+                    hintText: 'Type order', // optional
+                  ),
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState != ConnectionState.done) {
+                      return const Center(child: CircularProgressIndicator());
+                    }
+
+                    final result = snapshot.data ?? [];
+                    return ListView.builder(
+                      itemCount: result.length,
+                      itemBuilder: (context, index) {
+                        return GestureDetector(
+                          onTap: () {
+                            setState(
+                              () => _orderController.text = result[index],
+                            );
+
+                            _orderController.selection =
+                                TextSelection.fromPosition(
+                              TextPosition(
+                                  offset: _orderController.text.length),
+                            );
+
+                            boxControllerOrder.close?.call();
+                          },
+                          child: Card(
+                            child: ListTile(title: Text(result[index])),
+                          ),
+                        );
+                      },
+                    );
+                  },
+                ),
+                const SizedBox(height: 60),
+
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
