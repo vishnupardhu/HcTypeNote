@@ -119,13 +119,13 @@ class _TextTypeHcOrderState extends State<TextTypeHcOrder> {
                                   fontSize: 14)),
                         ],
                       ),
-                      pw.SizedBox(height: 10),
+                      pw.SizedBox(height: 25),
                       pw.Text("PROCEEDING SHEET",
                           style: pw.TextStyle(
                               fontWeight: pw.FontWeight.bold, fontSize: 14)),
                     ]),
 
-                pw.SizedBox(height: 25),
+                pw.SizedBox(height: 10),
                 // Table
 
                 pw.Container(
@@ -172,16 +172,16 @@ class _TextTypeHcOrderState extends State<TextTypeHcOrder> {
                         children: [
                           _buildCell('', 10),
                           _buildCell('', 60),
-                          _buildCellalign(_orderController.text, 250),
+                          _buildCellalign(_orderController.text.trim(), 250),
                           _buildCell('', 30),
                         ],
                       ),
                       pw.TableRow(
                         children: [
-                          pw.SizedBox(height: 18),
-                          pw.SizedBox(height: 18),
-                          pw.SizedBox(height: 18),
-                          pw.SizedBox(height: 18),
+                          pw.SizedBox(height: 14),
+                          pw.SizedBox(height: 14),
+                          pw.SizedBox(height: 14),
+                          pw.SizedBox(height: 14),
                         ],
                       ),
                       pw.TableRow(
@@ -203,10 +203,10 @@ class _TextTypeHcOrderState extends State<TextTypeHcOrder> {
                       ),
                       pw.TableRow(
                         children: [
-                          pw.SizedBox(height: 350),
-                          pw.SizedBox(height: 350),
-                          pw.SizedBox(height: 350),
-                          pw.SizedBox(height: 350),
+                          pw.SizedBox(height: 300),
+                          pw.SizedBox(height: 300),
+                          pw.SizedBox(height: 300),
+                          pw.SizedBox(height: 300),
                         ],
                       ),
                       // Add more rows as needed...
@@ -448,11 +448,11 @@ class _TextTypeHcOrderState extends State<TextTypeHcOrder> {
   pw.Widget _buildCellalign(String text, double width) {
     return pw.Container(
       width: width,
-      padding: const pw.EdgeInsets.all(4),
+      padding: const pw.EdgeInsets.all(6),
       child: pw.Text(
         text,
         textAlign: pw.TextAlign.start,
-        style: const pw.TextStyle(fontSize: 12),
+        style: const pw.TextStyle(fontSize: 13),
       ),
     );
   }
