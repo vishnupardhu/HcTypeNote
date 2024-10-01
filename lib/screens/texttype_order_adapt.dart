@@ -1,7 +1,4 @@
-
-
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:hctypeorder/widgets/pdf_api.dart';
 import 'package:intl/intl.dart';
 
@@ -11,14 +8,15 @@ import 'package:printing/printing.dart';
 import 'package:pdf/widgets.dart' as pw;
 import 'package:shared_preferences/shared_preferences.dart';
 
-class TextTypeHcOrder extends StatefulWidget {
-  const TextTypeHcOrder({super.key});
+
+class TextTypeOrderAdapt extends StatefulWidget {
+  const TextTypeOrderAdapt({super.key});
 
   @override
-  State<TextTypeHcOrder> createState() => _TextTypeHcOrderState();
+  State<TextTypeOrderAdapt> createState() => _TextTypeOrderAdaptState();
 }
 
-class _TextTypeHcOrderState extends State<TextTypeHcOrder> {
+class _TextTypeOrderAdaptState extends State<TextTypeOrderAdapt> {
   final _formKey = GlobalKey<FormState>();
   String? _caseType;
 
@@ -31,23 +29,12 @@ class _TextTypeHcOrderState extends State<TextTypeHcOrder> {
   final TextEditingController _judgeTypeController = TextEditingController();
   final TextEditingController _cmShortkeyController = TextEditingController();
   final boxControllerOrder = BoxController();
-
   Future<List<String>> future(String input) => Future<List<String>>.delayed(
         const Duration(seconds: 1),
         () => _orders
             .where((s) => s.toLowerCase().contains(input.toLowerCase()))
             .toList(),
       );
-      //  ByteData byteData = Uint8List.fromList(utf8.encode('fonts/bookmanoldstyle.ttf')).buffer.asByteData();
-//         varMan() async {
-//            ByteData byte = await rootBundle.load('fonts/bookmanoldstyle.ttf');
-//           // final List<int> bytes = bytefs.buffer.asUint8List();
-//            return byte;
-//         }
-//      var  bytes;
-//      ByteData byte = await rootBundle.load('fonts/bookmanoldstyle.ttf');
-// final List<int> fontData = byte.buffer.asUint8List();
-// final ttf = pw.Font.ttf(fontData);
   List<String> caseTypes = [
     'A.S',
     'C.A',
@@ -77,7 +64,6 @@ class _TextTypeHcOrderState extends State<TextTypeHcOrder> {
   @override
   void initState() {
     super.initState();
-   
     _loadOrders();
   }
 
@@ -108,15 +94,6 @@ class _TextTypeHcOrderState extends State<TextTypeHcOrder> {
         });
       }
       final pdf = pw.Document();
-//final List<int> fontData = byte.buffer.asUint8List();
-//final ttf = pw.Font.ttf(byte);
-  //final fontdata = bytes.buffer.asUint8List();
-//final font =pw.Font.ttf(byte);
-     //final font =await PdfFont.load(rootBundle.load('fonts/your_font.ttf'));
-     const transparentColor = PdfColor.fromInt(0x00FFFFFF);
-    //  var fontme=await 
-      //final font =  pw.Font.fr(await pdff);
-        final font = pw.Font.ttf(await rootBundle.load('fonts/bookmanoldstyle.ttf'));
 
       pdf.addPage(
         pw.MultiPage(
@@ -129,7 +106,7 @@ class _TextTypeHcOrderState extends State<TextTypeHcOrder> {
                     children: [
                       pw.Text("HIGH COURT FOR THE STATE OF TELANGANA",
                           style: pw.TextStyle(
-                              fontWeight: pw.FontWeight.bold, fontSize: 15,font: font)),
+                              fontWeight: pw.FontWeight.bold, fontSize: 15)),
                       pw.SizedBox(height: 10),
                       pw.Row(
                         mainAxisAlignment: pw.MainAxisAlignment.center,
@@ -138,19 +115,19 @@ class _TextTypeHcOrderState extends State<TextTypeHcOrder> {
                           pw.Text("MAIN CASE NO: ",
                               style: pw.TextStyle(
                                   fontWeight: pw.FontWeight.bold,
-                                  fontSize: 14,font: font)),
+                                  fontSize: 14)),
                           pw.SizedBox(width: 5),
                           pw.Text(
                               '$_caseType NO. ${_caseNoController.text} of ${_caseYearController.text}',
                               style: pw.TextStyle(
                                   fontWeight: pw.FontWeight.bold,
-                                  fontSize: 14,font: font)),
+                                  fontSize: 14)),
                         ],
                       ),
                       pw.SizedBox(height: 25),
                       pw.Text("PROCEEDING SHEET",
                           style: pw.TextStyle(
-                              fontWeight: pw.FontWeight.bold, fontSize: 14,font: font)),
+                              fontWeight: pw.FontWeight.bold, fontSize: 14)),
                     ]),
 
                 pw.SizedBox(height: 10),
@@ -167,25 +144,25 @@ class _TextTypeHcOrderState extends State<TextTypeHcOrder> {
                         bottom: pw.BorderSide(color: PdfColors.black),
                         verticalInside: pw.BorderSide(color: PdfColors.black),
                         horizontalInside:
-                            pw.BorderSide(color: transparentColor)),
+                            pw.BorderSide(color: PdfColors.white)),
                     children: [
                       // Header row
                       pw.TableRow(
                         children: [
-                          _buildHeaderCell('S.NO',font),
-                          _buildHeaderCell('DATE',font),
-                          _buildHeaderCell('ORDER',font),
-                          _buildHeaderCell('OFFICE NOTE',font),
+                          _buildHeaderCell('S.NO'),
+                          _buildHeaderCell('DATE'),
+                          _buildHeaderCell('ORDER'),
+                          _buildHeaderCell('OFFICE NOTE'),
                         ],
                       ),
                       // Sample data row
                       pw.TableRow(
                         children: [
-                          _buildCell('1', 10,font),
-                          _buildCell('${todayDate(mydate)}', 60,font),
+                          _buildCell('1', 10),
+                          _buildCell('${todayDate(mydate)}', 60),
                           _buildCellStartBold(
-                              '  ${_judgeTypeController.text}', 250,font),
-                          _buildCell('', 30,font),
+                              '  ${_judgeTypeController.text}', 250),
+                          _buildCell('', 30),
                         ],
                       ),
                       pw.TableRow(
@@ -198,10 +175,10 @@ class _TextTypeHcOrderState extends State<TextTypeHcOrder> {
                       ),
                       pw.TableRow(
                         children: [
-                          _buildCell('', 10,font),
-                          _buildCell('', 60,font),
-                          _buildCellalign(_orderController.text.trim(), 250,font),
-                          _buildCell('', 30,font),
+                          _buildCell('', 10),
+                          _buildCell('', 60),
+                          _buildCellalign(_orderController.text.trim(), 250),
+                          _buildCell('', 30),
                         ],
                       ),
                       pw.TableRow(
@@ -214,34 +191,35 @@ class _TextTypeHcOrderState extends State<TextTypeHcOrder> {
                       ),
                       pw.TableRow(
                         children: [
-                          _buildCell('', 10,font),
-                          _buildCell('', 60,font),
+                          _buildCell('', 10),
+                          _buildCell('', 60),
                           _buildCellEndBold(
-                              '${_signTypeController.text}   ', 250,font),
-                          _buildCell('', 30,font),
+                              '${_signTypeController.text}   ', 250),
+                          _buildCell('', 30),
                         ],
                       ),
                       pw.TableRow(
                         children: [
-                          _buildCell('', 10,font),
-                          _buildCell('', 60,font),
-                          _buildCellEnd('${_cmShortkeyController.text}  ', 250,font),
-                          _buildCell('', 30,font),
+                          _buildCell('', 10),
+                          _buildCell('', 60),
+                          _buildCellEnd('${_cmShortkeyController.text}  ', 250),
+                          _buildCell('', 30),
                         ],
                       ),
-                     
                       pw.TableRow(
                         children: [
-                          pw.SizedBox(height: 330),
-                          pw.SizedBox(height: 330),
-                          pw.SizedBox(height: 330),
-                          pw.SizedBox(height: 330),
+                          pw.SizedBox(height: 300),
+                          pw.SizedBox(height: 300),
+                          pw.SizedBox(height: 300),
+                          pw.SizedBox(height: 300),
                         ],
                       ),
                       // Add more rows as needed...
                     ],
                   ),
                 ),
+              
+              
               ],
             ),
           ],
@@ -461,8 +439,7 @@ class _TextTypeHcOrderState extends State<TextTypeHcOrder> {
     );
   }
 
-  pw.Widget _buildHeaderCell(String text,pw.Font font) {
-    
+  pw.Widget _buildHeaderCell(String text) {
     return pw.Container(
       padding: const pw.EdgeInsets.all(8),
       decoration: const pw.BoxDecoration(
@@ -471,53 +448,49 @@ class _TextTypeHcOrderState extends State<TextTypeHcOrder> {
       )),
       child: pw.Text(
         text,
-        style: pw.TextStyle(fontWeight: pw.FontWeight.bold, fontSize: 12 ,font: font),
+        style: pw.TextStyle(fontWeight: pw.FontWeight.bold, fontSize: 12),
         textAlign: pw.TextAlign.center,
       ),
     );
   }
 
-  pw.Widget _buildCellalign(String text, double width,pw.Font font) {
-
+  pw.Widget _buildCellalign(String text, double width) {
     return pw.Container(
       width: width,
       padding: const pw.EdgeInsets.all(6),
       child: pw.Text(
         text,
         textAlign: pw.TextAlign.start,
-        style:  pw.TextStyle(fontSize: 13,font: font),
+        style: const pw.TextStyle(fontSize: 13),
       ),
     );
   }
 
-  pw.Widget _buildCell(String text, double width,pw.Font font) {
-    
+  pw.Widget _buildCell(String text, double width) {
     return pw.Container(
       width: width,
       padding: const pw.EdgeInsets.all(1),
       child: pw.Text(
         text,
         textAlign: pw.TextAlign.center,
-        style:  pw.TextStyle(fontSize: 12,font: font),
+        style: const pw.TextStyle(fontSize: 12),
       ),
     );
   }
 
-  pw.Widget _buildCellEndBold(String text, double width,pw.Font font) {
-     
+  pw.Widget _buildCellEndBold(String text, double width) {
     return pw.Container(
       width: width,
       padding: const pw.EdgeInsets.all(1),
       child: pw.Text(
         text,
         textAlign: pw.TextAlign.end,
-        style: pw.TextStyle(fontWeight: pw.FontWeight.bold, fontSize: 9,font: font),
+        style: pw.TextStyle(fontWeight: pw.FontWeight.bold, fontSize: 9),
       ),
     );
   }
 
-  pw.Widget _buildCellStartBold(String text, double width,pw.Font font) {
-
+  pw.Widget _buildCellStartBold(String text, double width) {
     return pw.Container(
       width: width,
       padding: const pw.EdgeInsets.all(1),
@@ -527,20 +500,19 @@ class _TextTypeHcOrderState extends State<TextTypeHcOrder> {
         style: pw.TextStyle(
             fontWeight: pw.FontWeight.bold,
             decoration: pw.TextDecoration.underline,
-            fontSize: 13,font: font),
+            fontSize: 13),
       ),
     );
   }
 
-  pw.Widget _buildCellEnd(String text, double width,pw.Font font) {
- 
+  pw.Widget _buildCellEnd(String text, double width) {
     return pw.Container(
       width: width,
       padding: const pw.EdgeInsets.all(1),
       child: pw.Text(
         text,
         textAlign: pw.TextAlign.end,
-        style:  pw.TextStyle(fontSize: 10,font: font),
+        style: const pw.TextStyle(fontSize: 10),
       ),
     );
   }

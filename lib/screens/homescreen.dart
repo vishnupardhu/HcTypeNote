@@ -208,6 +208,7 @@ class _HomeScreenHcState extends State<HomeScreenHc> {
                             ),
                             Container(
                               width: MediaQuery.of(context).size.width,
+                            height: 400,
                               padding: const EdgeInsets.all(8),
                               child: Image.asset(
                                 'assets/images/welcome.jpg',

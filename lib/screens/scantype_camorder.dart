@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:hctypeorder/widgets/pdf_api.dart';
 import 'package:intl/intl.dart';
 
@@ -47,11 +48,14 @@ class _ScanCamTypeHcOrderState extends State<ScanCamTypeHcOrder> {
     'C.R.L.R.C',
     'C.R.P',
     'C.M.A',
-    'W.P',
+    'W.P','S.A','C.M.C.A','M.A.C.M.A','C.R.P.R.C','T.R.C.M.A',
     'W.A'
   ]; // Sample case types
 
   DateTime _selectedDate = DateTime.now();
+ final data =  rootBundle.load('assets/fonts/opensans_regular.ttf');
+
+
 
   todayDate(DateTime date) {
     var now = DateTime.now();
@@ -61,7 +65,7 @@ class _ScanCamTypeHcOrderState extends State<ScanCamTypeHcOrder> {
   }
 
   List<String> _orders = ["Load"];
-
+var font =  PdfGoogleFonts.abhayaLibreRegular();
   @override
   void initState() {
     super.initState();
@@ -108,7 +112,7 @@ class _ScanCamTypeHcOrderState extends State<ScanCamTypeHcOrder> {
                     children: [
                       pw.Text("HIGH COURT FOR THE STATE OF TELANGANA",
                           style: pw.TextStyle(
-                              fontWeight: pw.FontWeight.bold, fontSize: 15)),
+                              fontWeight: pw.FontWeight.bold, fontSize: 15 ,font:pw.Font() )),
                       pw.SizedBox(height: 10),
                       pw.Row(
                         mainAxisAlignment: pw.MainAxisAlignment.center,
@@ -121,8 +125,9 @@ class _ScanCamTypeHcOrderState extends State<ScanCamTypeHcOrder> {
                           pw.SizedBox(width: 5),
                           pw.Text(
                               '$_caseType NO. ${_caseNoController.text} of ${_caseYearController.text}',
-                              style: pw.TextStyle(
+                              style:  pw.TextStyle(
                                   fontWeight: pw.FontWeight.bold,
+                             
                                   fontSize: 14)),
                         ],
                       ),
